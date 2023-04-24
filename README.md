@@ -3,13 +3,13 @@ arduinoFFT
 
 Fast Fourier Transform for Arduino
 
-This is a fork from https://code.google.com/p/makefurt/ which has been abandoned since 2011.
+This is a fork from https://github.com/kosme/arduinoFFT, with added functions to recieve the 2nd and 3rd largest peaks.
 
 <del>This is a C++ library for Arduino for computing FFT.</del> Now it works both on Arduino and C projects.
 
 Tested on Arduino 1.6.11
 
-### Installation on Arduino
+### Installation on Arduino For
 
 Use the Arduino Library Manager to install and keep it updated. Just look for arduinoFFT. Only for Arduino 1.5+
 
@@ -65,6 +65,10 @@ Removes the DC component from the sample data.
 * **!MajorPeak**(double *vD, uint16_t samples, double samplingFrequency);
 * **!MajorPeak**(double *vD, uint16_t samples, double samplingFrequency, double *f, double *v);
 * **MajorPeak**();
+* **MajorPeak2**();
+Finds second largest frequency
+* **MajorPeak3**();
+Finds third largest frequency
 * **MajorPeak**(double *f, double *v);
 * **MajorPeakParabola**();
 Looks for and returns the frequency of the biggest spike in the analyzed signal.
