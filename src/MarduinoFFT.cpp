@@ -357,7 +357,7 @@ void arduinoFFT::Windowing(double *vData, uint16_t samples,
   }
 }
 
-double arduinoFFT::MajorPeak() {
+double arduinoFFT::MajorPeak(double[] a[]) {
   double maxY = 0;
   uint16_t IndexOfMaxY = 0;
   // If sampling_frequency = 2 * max_frequency in signal,
@@ -383,11 +383,12 @@ double arduinoFFT::MajorPeak() {
     interpolatedX =
         ((IndexOfMaxY + delta) * this->_samplingFrequency) / (this->_samples);
   // returned value: interpolated frequency peak apex
-  return (interpolatedX);
+  a[0] = interpolatedX;
+  a[1] = maxY;
 }
 
 
-double arduinoFFT::MajorPeak2() {
+double arduinoFFT::MajorPeak2(double[] a) {
   double maxY = 0;
   uint16_t IndexOfMaxY = 0;
   double max2Y = 0;
@@ -425,10 +426,11 @@ double arduinoFFT::MajorPeak2() {
     interpolatedX =
         ((IndexOfMax2Y + delta) * this->_samplingFrequency) / (this->_samples);
   // returned value: interpolated frequency peak apex
-  return (interpolatedX);
+  a[0] = interpolatedX;
+  a[1] = max2Y;
 }
 
-double arduinoFFT::MajorPeak3() {
+double arduinoFFT::MajorPeak3(double[] a) {
   double maxY = 0;
   uint16_t IndexOfMaxY = 0;
   double max2Y = 0;
@@ -479,7 +481,8 @@ double arduinoFFT::MajorPeak3() {
     interpolatedX =
         ((IndexOfMax3Y + delta) * this->_samplingFrequency) / (this->_samples);
   // returned value: interpolated frequency peak apex
-  return (interpolatedX);
+  a[0] = interpolatedX;
+  a[1] = max3Y;
 }
 
 void arduinoFFT::MajorPeak(double *f, double *v) {

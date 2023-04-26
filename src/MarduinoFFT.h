@@ -129,9 +129,9 @@ public:
   void ComplexToMagnitude();
   void Compute(FFTDirection dir);
   void DCRemoval();
-  double MajorPeak();
-  double MajorPeak2();
-  double MajorPeak3();
+  double MajorPeak(double[] a);
+  double MajorPeak2(double[] a);
+  double MajorPeak3(double[] a);
 
   void MajorPeak(double *f, double *v);
   void Windowing(FFTWindow windowType, FFTDirection dir);
