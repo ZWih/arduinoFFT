@@ -205,6 +205,16 @@ void arduinoFFT::DCRemoval() {
   }
 }
 
+double arduinoFFT::Average() {
+  // calculate the mean of vData
+  double mean = 0;
+  for (uint16_t i = 0; i < this->_samples; i++) {
+    mean += this->_vReal[i];
+  }
+  mean /= this->_samples;
+  return mean;
+}
+
 void arduinoFFT::DCRemoval(double *vData, uint16_t samples) {
 // calculate the mean of vData
 #warning("This method is deprecated and may be removed on future revisions.")

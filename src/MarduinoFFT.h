@@ -134,6 +134,9 @@ public:
   void MajorPeak2(double a[]);
   void MajorPeak3(double a[]);
 
+double arduinoFFT::Average();
+
+
   void MajorPeak(double *f, double *v);
   void Windowing(FFTWindow windowType, FFTDirection dir);
 
