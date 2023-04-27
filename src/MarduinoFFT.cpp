@@ -357,7 +357,7 @@ void arduinoFFT::Windowing(double *vData, uint16_t samples,
   }
 }
 
-double arduinoFFT::MajorPeak(double a[]) {
+void arduinoFFT::MajorPeak(double a[]) {
   double maxY = 0;
   uint16_t IndexOfMaxY = 0;
   // If sampling_frequency = 2 * max_frequency in signal,
@@ -387,8 +387,30 @@ double arduinoFFT::MajorPeak(double a[]) {
   a[1] = maxY;
 }
 
+void arduinoFFT::NthMajorPeak(double a[], uint8_t n) {
+  double max[n];
+  uint8_t IndexOfMax[n];
+  MajorPeak(a);
+  IndexOfMax[0] = a[0];
+  max[0] = a[1];
 
-double arduinoFFT::MajorPeak2(double a[]) {
+  for (uint8_t j = 1; j < n; j++) {
+    for (uint16_t i = 1; i < ((this->_samples >> 1) + 1); i++) {
+      if ((this->_vReal[i - 1] < this->_vReal[i]) &&
+          (this->_vReal[i] > this->_vReal[i + 1])) {
+        if (this->_vReal[i] > max[j] && this->_vReal[i] < max[j - 1]) {
+          max[j] = this->_vReal[i];
+          IndexOfMax[j] = i;
+        }
+      }
+    }
+  }
+
+  a[0] = IndexOfMax[n - 1];
+  a[1] = max[0];
+}
+
+void arduinoFFT::MajorPeak2(double a[]) {
   double maxY = 0;
   uint16_t IndexOfMaxY = 0;
   double max2Y = 0;
@@ -430,7 +452,7 @@ double arduinoFFT::MajorPeak2(double a[]) {
   a[1] = max2Y;
 }
 
-double arduinoFFT::MajorPeak3(double a[]) {
+void arduinoFFT::MajorPeak3(double a[]) {
   double maxY = 0;
   uint16_t IndexOfMaxY = 0;
   double max2Y = 0;
