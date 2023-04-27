@@ -406,8 +406,19 @@ void arduinoFFT::NthMajorPeak(double a[], uint8_t n) {
     }
   }
 
+  double delta =
+      0.5 *
+      ((this->_vReal[IndexOfMax[n-1] - 1] - this->_vReal[IndexOfMax[n-1] + 1]) /
+       (this->_vReal[IndexOfMax[n-1] - 1] - (2.0 * this->_vReal[IndexOfMax[n-1]]) +
+        this->_vReal[IndexOfMax[n-1] + 1]));
+  double interpolatedX =
+      ((IndexOfMax[n-1] + delta) * this->_samplingFrequency) / (this->_samples - 1);
+  if (IndexOfMax[n-1] ==
+      (this->_samples >> 1)) // To improve calculation on edge values
+    interpolatedX =
+        ((IndexOfMax[n - 1] + delta) * this->_samplingFrequency) / (this->_samples);
   a[0] = IndexOfMax[n - 1];
-  a[1] = max[0];
+  a[1] = max[n-1];
 }
 
 void arduinoFFT::MajorPeak2(double a[]) {
