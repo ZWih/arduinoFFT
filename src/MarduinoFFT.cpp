@@ -205,14 +205,13 @@ void arduinoFFT::DCRemoval() {
   }
 }
 
-double arduinoFFT::Average() {
+double arduinoFFT::TotalAmp() {
   // calculate the mean of vData
-  double mean = 0;
+  double total = 0;
   for (uint16_t i = 0; i < this->_samples; i++) {
-    mean += this->_vReal[i];
+    total += this->_vReal[i];
   }
-  mean /= this->_samples;
-  return mean;
+  return total;
 }
 
 void arduinoFFT::DCRemoval(double *vData, uint16_t samples) {
