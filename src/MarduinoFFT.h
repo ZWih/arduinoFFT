@@ -134,7 +134,7 @@ public:
   void MajorPeak2(double a[]);
   void MajorPeak3(double a[]);
 
-double arduinoFFT::TotalAmp();
+double TotalAmp();
 
 
   void MajorPeak(double *f, double *v);
